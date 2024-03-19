@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "560425926868",
+    "project_id": "mvpmobilefeatures",
+    "storage_bucket": "mvpmobilefeatures.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560425926868:android:66c2c7908c4597598cbb41",
+        "android_client_info": {
+          "package_name": "com.mvpmobilefeatures"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "560425926868-0tnv570qd0mvkti5le1aj7o5mvp9ib4r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mvpmobilefeatures",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "560425926868-suo66e0r0rir5elpjjt5dbcl59irb3rl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHMmkzjPI3oediu7hmkDZiZ1B0jaB_mM4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "560425926868-suo66e0r0rir5elpjjt5dbcl59irb3rl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
