@@ -1,0 +1,80 @@
+trigger:
+- none
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+- group: common-variables  
+
+resources:
+  repositories: 
+    - repository: azuretemplates
+      type: git
+      ref: main  
+      name: DevOps/pipeline-templates
+
+stages:
+- stage: Build
+  jobs:
+  - job: BuildJob
+    displayName: 'Build job'
+    steps:
+
+
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '20.10.0'
+      displayName: 'Install Node.js'
+    
+    - script: |
+        npm install -f
+        npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+        cd android
+        chmod 777 gradlew
+        ./gradlew assembleDebug
+        ls -R
+        cd build
+        ls -R
+ 
+    
+    # - template: reactnative.yml@azuretemplates 
+    #   parameters:
+    #     packagepath: "."
+    #     indexpath: "." 
+
+    # template NOT WORKING FOR THIS APPL bcas of Folder Structure 
+
+    - template: copyandpublishartifact.yml@azuretemplates
+      parameters:
+        path: "android/app/build/outputs/apk/debug/"
+  
+
+- stage: pushArtifactandSonarScan
+  jobs:
+  - job: PushArtifactJobandSonarScan
+    displayName: 'Push artifact'
+    pool:
+      name: mvp
+    steps:
+    
+      - template: downloadbuildartifact.yml@azuretemplates 
+
+
+      - template: sonarpreparefornpm.yml@azuretemplates 
+        parameters:
+          projectkey: "$(sonarkey)"
+          projectname: "$(Build.DefinitionName)"
+
+      - template: sonaranalyzeandpublish.yml@azuretemplates 
+        parameters:
+          jdkversion: "JAVA_HOME_11_X64"
+
+
+      - template: nexuswithversioning.yml@azuretemplates
+        parameters:
+          repo_name: $(Build.DefinitionName)
+          targetpath: $(System.ArtifactsDirectory)/drop
+          artifacttype: .
+      
+      
