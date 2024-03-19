@@ -1,0 +1,58 @@
+1. create a dummy folder and create one sample file(index.js) and write some piece of code
+2.go to the folder path and give cmd:npm login
+3.If you are in npm public account,switch to the nuxus repository account with complete url.
+  cmd:npm config set registry http://172.20.100.248:8081/repository/MCF-ReactNative-Package/ 
+4.getting registry by using cmd:npm config get registry
+
+5.our folder should have package.json,without package.json file we cannot publish.by using cmd:npm init  we can generate package.json file.
+6.to create package we are using cmd:npm publish
+7.resuage the package we can use cmd:npm i packageName.
+
+If you don't have public account you can directly login with nexus repository by using cmd:npm login --registry http://172.20.100.248:8081/repository/MCF-ReactNative-Package/ 
+
+public account
+npm config set registry https://registry.npmjs.org/
+
+npm get registry
+
+
+=>APK Release In Android:refer the below link
+  https://www.youtube.com/watch?v=2yHI0e4MzUE
+ 
+=>firebase google and facebook signIn: refer the below links
+https://www.youtube.com/watch?v=8aARNaWR78Q&pp=ygUdZ29vZ2xlIHNpZ25pbiBpbiByZWFjdCBuYXRpdmU%3D
+https://www.youtube.com/watch?v=u2N_2cmT7xI&pp=ygUZZmIgc2lnbmluIGluIHJlYWN0IG5hdGl2ZQ%3D%3D 
+
+=>firebase analytics :refer the below link
+https://www.youtube.com/watch?v=k1Y1Wwtuze4(this is not a perfect link,In messaging and chat code we have analyitcsCode folder in that we have analyitcs code)
+import React, { useEffect } from 'react';
+import analytics from '@react-native-firebase/analytics';
+ 
+const AnalyticsScreen = ({ screenName, screenClass }) => {
+  useEffect(() => {
+    analytics().logEvent('app_open');
+    analytics().logScreenView({
+      screen_name: screenName,
+      screen_class: screenClass ? String(screenClass) : screenName, });
+  }, [screenName,screenClass]);
+ 
+  return null;
+};
+ 
+export default AnalyticsScreen;
+
+
+
+=>firebase notifications: refer the below link
+Step-by-Step Guide: Implementing Push Notifications in React Native with Firebase (Android) (youtube.com)
+
+=>if bottom navigation icons is not shown use this below code 
+build.gradle lo apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle") add cheu inka 
+
+mainActivity.java lo 
+import android.os.Bundle;
+@Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(null);
+  }  evvi add cheyyali
+
